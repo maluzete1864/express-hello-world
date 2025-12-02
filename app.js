@@ -2,10 +2,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// ---- HTML precisa vir ANTES das rotas que o utilizam ----
+// --- HTML PRECISA VIR ANTES DAS ROTAS ---
 const html = `
 <!DOCTYPE html>
 <html>
@@ -46,6 +43,7 @@ const html = `
         position: absolute;
         top: 50%;
         left: 50%;
+        margin-right: -50%;
         transform: translate(-50%, -50%);
       }
     </style>
@@ -57,21 +55,22 @@ const html = `
   </body>
 </html>
 `;
-// ---------------------------------------------------------
+// ----------------------------------------------------------
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// ROTAS
 app.get("/", (req, res) => res.type("html").send(html));
 
-app.get('/meunome', (req, res) => {
-  res.send('Meu nome é Maria Luiza Martins Meira');
+app.get("/meunome", (req, res) => {
+  res.send("Meu nome é Maria Luiza Martins Meira");
 });
 
-app.get('/tico', (req, res) => {
-  res.send('teco');
+app.get("/tico", (req, res) => {
+  res.send("teco");
 });
 
-app.get('/pokemons', (req, res) => {
+app.get("/pokemons", (req, res) => {
   const pokemons = [
     "Caterpie",
     "Pidgeotto",
@@ -88,19 +87,16 @@ app.get('/pokemons', (req, res) => {
   res.json(pokemons);
 });
 
-app.post('/series', (req, res) => {
-  const series = [
-    "The Originals",
-    "Gossip Girl",
-    "Arrow"
-  ];
-
+app.post("/series", (req, res) => {
+  const series = ["The Originals", "Gossip Girl", "Arrow"];
   res.json(series);
 });
 
-app.get('/req', (req, res) => {
-  console.log("Just got a request!")
-  res.send('Yo!')
+app.get("/req", (req, res) => {
+  console.log("Just got a request!");
+  res.send("Yo!");
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () =>
+  console.log(`Example app listening on port ${port}!`)
+);
