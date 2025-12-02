@@ -15,6 +15,34 @@ app.get('/tico', (req, res) => {
   res.send('teco');
 });
 
+app.get('/pokemons', (req, res) => {
+  const pokemons = [
+    "Caterpie",
+    "Pidgeotto",
+    "Bulbasaur",
+    "Charmander",
+    "Squirtle",
+    "Krabby",
+    "Muk",
+    "Tauros",
+    "Snorlax",
+    "Chikorita"
+  ];
+
+  res.json(pokemons);
+});
+
+app.post('/series', (req, res) => {
+  const series = [
+    "The Originals",
+    "Gossip Girl",
+    "Arrow"
+  ];
+
+  res.json(series);
+});
+
+
 app.get('/req', (req, res) => {
     console.log("Just got a request!")
     res.send('Yo!')
