@@ -55,6 +55,7 @@ const html = `
 </html>
 `;
 
+
 // ---------- MIDDLEWARE ----------
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -100,11 +101,7 @@ app.get('/req', (req, res) => {
   res.send('Yo!');
 });
 
-// ---------- LISTEN ----------
-if (require.main === module) {
-  app.listen(port, () =>
-    console.log(`Example app listening on port ${port}!`)
-  );
-}
+// ---------- LISTEN OBRIGATÓRIO ----------
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 module.exports = app;
